@@ -1,0 +1,47 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.game-container {
+    text-align: center;
+}
+
+.circulo {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+    user-select: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.circulo:hover {
+    background-color: #2980b9;
+}
+
+#mensagem-conquista {
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 255, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.escondido {
+    display: none;
+}
+
+p {
+    color: white;
+}

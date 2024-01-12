@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="game.css">
+    <title>Sistema de Clique</title>
+    <style>
+        body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.game-container {
+    text-align: center;
+}
+
+.circulo {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+    user-select: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.circulo:hover {
+    background-color: #2980b9;
+}
+
+#mensagem-conquista {
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 255, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.escondido {
+    display: none;
+}
+
+p {
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>joguinho</title>
+    </head>
+    <body>
+        <div class="game-container">
+            <div id="circulo" class="circulo"></div>
+            <p id="contador-de-clique">Cliques: 0</p>
+        </div>
+        <div id="mensagem-conquista" class="escondido"></div>
+        
+        <script src="game.js"></script>
+    </body>
+    </html>
+    
+
+    <script src="script.js">// Número total de cliques
+        let clicks = 0;
+        
+        // Adicionar evento de clique ao círculo
+        document.getElementById("circulo").addEventListener("click", () => {
+            // Adicionar clique
+            clicks++;
+            // Atualizar cliques
+            updateClicks();
+            // Checar conquista
+            checarConquista();
+        });
+        
+        // Função para atualizar cliques
+        function updateClicks() {
+            // Elemento de texto que mostra o número atual de cliques
+            const textElement = document.getElementById("contador-de-clique");
+            // Atualizar o texto com o número de cliques
+            textElement.textContent = `Cliques: ${clicks}`;
+        }
+        
+        
+        
+        let checarConquistaLiberada = {};
+        
+        // Função para checar conquistas
+        function checarConquista() {
+            for (const [CliqueLimite, NomeConquista] of Object.entries(conquista)) {
+                if (clicks >= parseInt(CliqueLimite) && !checarConquistaLiberada[CliqueLimite]) {
+                    const mensagemConquistaElement = document.getElementById("mensagem-conquista");
+                    mensagemConquistaElement.textContent = NomeConquista;
+                    mensagemConquistaElement.classList.remove("escondido");
+                    checarConquistaLiberada[CliqueLimite] = true;
+        
+                    setTimeout(() => {
+                        mensagemConquistaElement.classList.add("escondido");
+                    }, 15000);
+                }
+            }
+        
+            // Verificar conquista dos 5000 cliques e fechar a janela
+            if (clicks === 5000) {
+                console.log("Fechando a janela...");
+                try {
+                    window.close();
+                } catch (error) {
+                    console.error("Não foi possível fechar:< ", error);
+                }
+            }
+        }
+        
+        const conquista = {
+            50: "Opa você quer clicar bastante nisso",
+            100: "Você realmente está focado em clicar nisso",
+            200: "Estou assustado com sua determinação, cara",
+            350 : "Você esta se esforçando muito e eu admiro isso",
+            500 : "Tu é muito doido véi",
+            1000 : "Acho que você tem coisa pra fazer não?",
+            2000 : "Mano",
+            2500 : "Você realmente não tem nada pra fazer né?",
+            3000 : "Vai viver cara namoral",
+            5000 : "OK AGORA TU PASSOU DOS LIMITES",
+            10000: "Bom, este é o final. Está feliz agora?"
+        }; </script>
+</body>
+</html>
+
+
